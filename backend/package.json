@@ -1,0 +1,35 @@
+{
+  "name": "fablo-tutorial-backend",
+  "version": "1.0.0",
+  "description": "Backend for Fablo Hyperledger Fabric tutorial",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hyperledger",
+    "fabric",
+    "blockchain",
+    "fablo"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "fabric-ca-client": "^2.2.20",
+    "fabric-network": "^2.2.20",
+    "ipfs-http-client": "^60.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}

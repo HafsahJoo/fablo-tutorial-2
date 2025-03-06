@@ -1,0 +1,5 @@
+healthad:123:health
+civilad:123:civil
+electoralad:123:electoral
+policead:123:police
+ds232t:password123:citizen
