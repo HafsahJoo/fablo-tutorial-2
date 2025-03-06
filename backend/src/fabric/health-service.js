@@ -199,30 +199,20 @@ async connect(orgName, userId) {
     let gateway;
     
     try {
-      // IMPORTANT CHANGE: Always connect as admin from the health organization
-      // This is because citizens don't have access to the citizens-health channel
-      const effectiveOrgName = 'health';
-      const effectiveUserId = 'healthad';  // Will be mapped to 'admin' in connect()
-      
-      console.log(`Original request - orgName: ${orgName}, userId: ${userId}`);
-      console.log(`Connecting as - orgName: ${effectiveOrgName}, userId: ${effectiveUserId}`);
-      
-      // Connect to the network using health admin credentials
-      const connection = await this.connect(effectiveOrgName, effectiveUserId);
+      // Connect to the network'
+      console.log("connecting");
+      console.log("orgName:", orgName, "userId:", userId);
+      const connection = await this.connect(orgName, userId);
       gateway = connection.gateway;
       const contract = connection.contract;
       
-      console.log("Successfully connected to network");
-      
+      console.log("connecting1");
       // Get citizen's medical history
       const result = await contract.evaluateTransaction(
         'getCitizenMedicalHistory',
         citizenId
       );
-      
-      console.log("Successfully retrieved medical history");
-      
-      // Parse and return the result
+      console.log("connecting3");
       return JSON.parse(result.toString());
     } catch (error) {
       logger.error(`Failed to get citizen medical history: ${error.message}`);
