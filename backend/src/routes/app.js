@@ -1,12 +1,17 @@
+// backend/src/routes/app.js
 const express = require('express');
 const router = express.Router();
 const authRoutes = require('./authRoutes');
+const healthRoutes = require('./healthRoutes');
 
 // Mount authentication routes
 router.use('/auth', authRoutes);
 
+// Mount health routes
+router.use('/health', healthRoutes);
+
 // Add a simple health check route
-router.get('/health', (req, res) => {
+router.get('/health-check', (req, res) => {
   res.status(200).json({ status: 'ok' });
 });
 
