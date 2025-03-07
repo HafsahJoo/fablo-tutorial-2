@@ -45,12 +45,14 @@ router.post('/records', isAuthenticated, isHealthAdmin, healthController.createM
 router.get('/records/:recordId', isAuthenticated, healthController.getMedicalRecord);
 
 // Get citizen's medical history
-router.get('/citizens/:citizenId/records', isAuthenticated, isHealthAdminOrSelf, healthController.getCitizenMedicalHistory);
+router.get('/citizens/:citizenId/records', healthController.getCitizenMedicalHistory);
 
 // Create a prescription
 router.post('/prescriptions', isAuthenticated, isHealthAdmin, healthController.createPrescription);
 
 // Book an appointment
 router.post('/appointments', isAuthenticated, healthController.bookAppointment);
+
+
 
 module.exports = router;

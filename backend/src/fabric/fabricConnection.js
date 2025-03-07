@@ -179,13 +179,14 @@ async function generateCertificate(orgName, userId, isAdmin = false) {
           enrollmentSecret: secret
         });
         
+        console.log(orgName);
         // Create and store the user identity
         const x509Identity = {
           credentials: {
             certificate: enrollment.certificate,
             privateKey: enrollment.key.toBytes(),
           },
-          mspId: `${orgName}MSP`,
+          mspId: 'CitizensMSP',
           type: 'X.509',
         };
         

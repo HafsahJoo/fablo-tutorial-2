@@ -23,23 +23,25 @@
     },
     {
       "organization": {
-        "name": "Citizens",
-        "domain": "citizens.example.com"
+      "name": "Citizens",
+      "domain": "citizens.example.com"
       },
       "peer": {
         "instances": 2,
-        "db": "CouchDb"
+        "db": "CouchDb",
+        "anchorPeers": ["peer0"]  
       },
       "tools": {}
     },
     {
       "organization": {
-        "name": "Health",
-        "domain": "health.example.com"
+      "name": "Health",
+      "domain": "health.example.com"
       },
       "peer": {
         "instances": 1,
-        "db": "CouchDb"
+        "db": "CouchDb",
+        "anchorPeers": ["peer0"]  
       },
       "tools": {}
     },
@@ -129,7 +131,21 @@
             "peer0"
           ]
         }
-      ]
+      ],
+      "policy": {
+        "Readers": {
+          "Type": "Signature",
+          "Rule": "OR('CitizensMSP.member', 'HealthMSP.member')"
+        },
+        "Writers": {
+          "Type": "Signature",
+          "Rule": "OR('CitizensMSP.member', 'HealthMSP.member')"
+        },
+        "Admins": {
+          "Type": "Signature",
+          "Rule": "OR('CitizensMSP.admin', 'HealthMSP.admin')"
+        }
+      }
     },
     {
       "name": "citizens-civil",
@@ -198,7 +214,7 @@
       "lang": "node",
       "channel": "citizens-health",
       "directory": "./chaincodes/health-chaincode",
-      "endorsement": ""
+      "endorsement": "OR('CitizensMSP.member', 'HealthMSP.member')"
     },
     {
       "name": "civil-chaincode",

@@ -141,12 +141,22 @@ async function login(username, password) {
       
       // Ensure the admin user for this organization is enrolled first
       // This is crucial for generating certificates and accessing the network
-      try {
-        await enrollAdmin(orgName);
-        console.log(`Admin enrolled for organization: ${orgName}`);
-      } catch (adminError) {
-        console.error(`Failed to enroll admin for ${orgName}: ${adminError}`);
-        // Continue anyway, as the admin might already be enrolled with different credentials
+      //if admin is not enrol then enrol admin
+
+      const walletPath = getWalletPath(orgName);
+      const wallet = await Wallets.newFileSystemWallet(walletPath);
+      const identity = await wallet.get("admin");
+
+      if (identity) {
+        console.log(`Admin already enrolled for organization: ${orgName}`);
+      } else {
+          try {
+            await enrollAdmin(orgName);
+            console.log(`Admin enrolled for organization: ${orgName}`);
+          } catch (adminError) {
+            console.error(`Failed to enroll admin for ${orgName}: ${adminError}`);
+            // Continue anyway, as the admin might already be enrolled with different credentials
+          }
       }
       
     //   // Check if user has a certificate

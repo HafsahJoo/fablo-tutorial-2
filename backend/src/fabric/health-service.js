@@ -72,10 +72,11 @@ async connect(orgName, userId) {
       console.log("Looking for identity:", identityId, "for user:", userId); 
       
       // Check if user identity exists
-      const identity = await wallet.get(identityId);
-      if (!identity) {
+      const myidentity = await wallet.get(identityId);
+      if (!myidentity) {
         throw new Error(`Identity ${identityId} not found in the wallet for ${orgName} organization`);
       }
+      console.log(myidentity);
       
       // Connect to gateway using the identity name from the wallet
       const gateway = new Gateway();
